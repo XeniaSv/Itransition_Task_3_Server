@@ -15,10 +15,9 @@ app.use(cors({
     credentials: true,
     origin: process.env.CLIENT_URL
 }));
-app.set('trust proxy', 1);
+app.enable('trust proxy');
 app.use("/api", router);
 app.use(errorMiddleware);
-
 
 const start = async (uri, callback) => {
     try {
