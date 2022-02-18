@@ -15,6 +15,7 @@ app.use(cors({
     credentials: true,
     origin: process.env.CLIENT_URL
 }));
+app.set('trust proxy', 1);
 app.use("/api", router);
 app.use(errorMiddleware);
 
