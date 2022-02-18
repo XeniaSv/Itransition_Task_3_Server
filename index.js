@@ -1,6 +1,7 @@
 require('dotenv').config()
 const express = require('express');
 const cors = require('cors');
+const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
 const router = require('./router/index');
@@ -14,6 +15,14 @@ app.use(cookieParser());
 app.use(cors({
     credentials: true,
     origin: process.env.CLIENT_URL
+}));
+app.use(session({
+    secret: 'somesecret',
+    key: 'sid',
+    cookie : {
+        secure: true,
+        maxAge: 5184000000
+    }
 }));
 app.enable('trust proxy');
 app.use("/api", router);
